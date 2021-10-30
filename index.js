@@ -28,8 +28,9 @@ app.get('/', (req, res) => {
 app.use('/posts', postRoutes)
 
 const PORT = process.env.PORT || 5000
+const CONNECTION_URL = mongodb+srv://admin:admin@cluster0.rcoz3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.CONNECTION_URL || CONNECTION_URL, { useNewUrlParser: true })
     .then(() => app.listen(PORT, () => console.log('Server running on port: ' + PORT)))
     .catch((error) => console.log("ERROR:" + error))
 
